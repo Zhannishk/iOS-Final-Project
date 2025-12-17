@@ -60,6 +60,14 @@ final class RemindersDatabase {
         }
     }
     
+    func insertReminder(reminder: ReminderModel) {
+        insertReminder(
+            title: reminder.title,
+            accessibility: reminder.accessibility,
+            dateOfRemind: reminder.dateOfRemind
+        )
+    }
+    
     func fetchReminders() -> [ReminderModel] {
         var result: [ReminderModel] = []
 

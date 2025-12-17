@@ -1,5 +1,5 @@
 //
-//  AddReminderViewController.swift
+//  ManageReminderViewController.swift
 //  Tracker
 //
 //  Created by Zhalgas Bagytzhan on 17.12.2025.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddReminderViewController: UIViewController {
+class ManageReminderViewController: UIViewController {
     
     @IBOutlet var reminderTitleField: UITextField!
     @IBOutlet weak var reminderAccessibilitySlider: UISlider!
@@ -29,7 +29,6 @@ class AddReminderViewController: UIViewController {
         }
 
         configureUI()
-
     }
     
     private func configureUI() {
@@ -38,7 +37,8 @@ class AddReminderViewController: UIViewController {
         reminderAccessibilitySlider.value = 0.5
 
         reminderAccessibilityLabel.text = String(format: "%.2f", reminderAccessibilitySlider.value)
-
+        
+        reminderDatePicker.minimumDate = Date()
     }
 
     @IBAction func accessibilityChanged(_ sender: UISlider) {
@@ -48,8 +48,11 @@ class AddReminderViewController: UIViewController {
     @IBAction func didTapSave() {
         let title = reminderTitleField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        guard let title, !title.isEmpty else { return }
-
+        guard let title, !title.isEmpty else {
+            showAlert()
+            return
+        }
+        
         if let reminder = reminderToEdit {
             let updatedReminder = ReminderModel(
                 id: reminder.id,
@@ -75,7 +78,6 @@ class AddReminderViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-
     @IBAction func didTapCancel() {
         navigationController?.popViewController(animated: true)
     }
@@ -85,18 +87,27 @@ class AddReminderViewController: UIViewController {
         return true
     }
     
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Error",
+            message: "Please enter reminder title",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
     func copyDatabaseIfNeeded(sourcePath: String) -> Bool {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let destinationPath = documents + "/goals.db"
+        let destinationPath = documents + "/reminders.db"
         let exists = FileManager.default.fileExists(atPath: destinationPath)
         guard !exists else { return false }
         do {
             try FileManager.default.copyItem(atPath: sourcePath, toPath: destinationPath)
             return true
         } catch {
-          print("error during file copy: \(error)")
+            print("error during file copy: \(error)")
             return false
         }
     }
-    
 }

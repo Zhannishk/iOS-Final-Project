@@ -1,5 +1,5 @@
 //
-//  AddGoalViewController.swift
+//  ManageGoalViewController.swift
 //  Tracker
 //
 //  Created by Zhalgas Bagytzhan on 17.12.2025.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddGoalViewController: UIViewController {
+class ManageGoalViewController: UIViewController {
 
     @IBOutlet weak var goalTitleField: UITextField!
     @IBOutlet weak var goalAccessibilitySlider: UISlider!
@@ -31,7 +31,6 @@ class AddGoalViewController: UIViewController {
         }
 
         configureUI()
-        
     }
 
     private func configureUI() {
@@ -44,7 +43,7 @@ class AddGoalViewController: UIViewController {
         goalDurationPicker.datePickerMode = .countDownTimer
         goalDurationPicker.countDownDuration = 3600
 
-        goalDurationPicker.minimumDate = Date()
+        goalStartDatePicker.minimumDate = Date()
     }
 
     @IBAction func accessibilityChanged(_ sender: UISlider) {
@@ -58,13 +57,6 @@ class AddGoalViewController: UIViewController {
             showAlert()
             return
         }
-        
-        GoalsDatabase.shared.insertGoal(
-            title: title,
-            accessibility: Double(goalAccessibilitySlider.value),
-            startDate: goalStartDatePicker.date,
-            duration: goalDurationPicker.countDownDuration
-        )
         
         if let goal = goalToEdit {
             let updatedGoal = GoalModel(
@@ -118,9 +110,8 @@ class AddGoalViewController: UIViewController {
             try FileManager.default.copyItem(atPath: sourcePath, toPath: destinationPath)
             return true
         } catch {
-          print("error during file copy: \(error)")
+            print("error during file copy: \(error)")
             return false
         }
     }
 }
-
