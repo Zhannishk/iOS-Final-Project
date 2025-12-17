@@ -48,16 +48,8 @@ class AddReminderViewController: UIViewController {
     @IBAction func didTapSave() {
         let title = reminderTitleField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        guard let title, !title.isEmpty else {
-            return
-        }
-        
-        RemindersDatabase.shared.insertReminder(
-            title: title,
-            accessibility: Double(reminderAccessibilitySlider.value),
-            dateOfRemind: reminderDatePicker.date,
-        )
-        
+        guard let title, !title.isEmpty else { return }
+
         if let reminder = reminderToEdit {
             let updatedReminder = ReminderModel(
                 id: reminder.id,
@@ -82,6 +74,7 @@ class AddReminderViewController: UIViewController {
 
         navigationController?.popViewController(animated: true)
     }
+
 
     @IBAction func didTapCancel() {
         navigationController?.popViewController(animated: true)
