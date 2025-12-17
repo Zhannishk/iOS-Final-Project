@@ -21,6 +21,10 @@ A type-safe SQLite database wrapper for Swift.
 **Repository**: https://github.com/stephencelis/SQLite.swift
 
 ### Alamofire
+Elegant HTTP networking library for Swift.
+
+**Version**: 5.8.0 or later
+**Repository**: https://github.com/Alamofire/Alamofire
 
 ## Setup Instructions
 
