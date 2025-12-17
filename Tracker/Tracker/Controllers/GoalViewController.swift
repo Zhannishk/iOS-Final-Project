@@ -19,6 +19,8 @@ class GoalViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+        
+        loadGoals()
     }
 
     @IBAction func didTapAdd() {
@@ -26,47 +28,52 @@ class GoalViewController: UIViewController {
             return
         }
 
-        vc.completion = { title, accessibility, date, duration in
-            let goal = GoalModel(
-                title: title,
-                accessibility: accessibility,
-                date: date,
-                duration: duration
-            )
-
-            self.goals.append(goal)
-
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.navigationController?.popViewController(animated: true)
-            }
+        vc.completion = { _, _, _, _ in
+            self.loadGoals()
         }
 
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadGoals()
+    }
+    
+    private func loadGoals() {
+        goals = GoalsDatabase.shared.fetchGoals()
+        tableView.reloadData()
     }
 }
 
 
 extension GoalViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let goal = goals[indexPath.row]
+            GoalsDatabase.shared.deleteGoal(id: goal.id)
+
+            goals.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         goals.count
     }
 
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "GoalTableViewCell",
+            withIdentifier: "GoalCell",
             for: indexPath
         )
 
         let goal = goals[indexPath.row]
         cell.textLabel?.text = goal.title
-
-        let hours = Int(goal.duration / 3600)
-        let minutes = Int(goal.duration.truncatingRemainder(dividingBy: 3600) / 60)
-        cell.detailTextLabel?.text = "⏱ \(hours)h \(minutes)m"
+        cell.detailTextLabel?.text =
+            "Accessibility: \(String(format: "%.2f", goal.accessibility))"
 
         return cell
     }

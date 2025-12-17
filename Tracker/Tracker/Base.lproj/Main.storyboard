@@ -127,8 +127,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geG-kP-mNg">
-                                <rect key="frame" x="20" y="72" width="141" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geG-kP-mNg">
+                                <rect key="frame" x="20" y="72" width="363" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -140,8 +140,8 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3wV-3A-fzP">
-                                <rect key="frame" x="0.0" y="151" width="393" height="618"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3wV-3A-fzP">
+                                <rect key="frame" x="0.0" y="156" width="393" height="613"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReminderCell" rowHeight="100" id="lSv-s9-PV6" customClass="ReminderTableViewCell" customModule="Tracker" customModuleProvider="target">
@@ -225,6 +225,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapAdd" destination="bv2-Pm-7ON" eventType="touchUpInside" id="u3v-i7-GhV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LN6-2y-5zV"/>
@@ -232,6 +235,7 @@
                         <constraints>
                             <constraint firstItem="YcQ-ko-tuf" firstAttribute="top" secondItem="geG-kP-mNg" secondAttribute="bottom" constant="8" id="1gv-lJ-fjN"/>
                             <constraint firstItem="YcQ-ko-tuf" firstAttribute="leading" secondItem="LN6-2y-5zV" secondAttribute="leading" constant="8" id="ATJ-ni-cxb"/>
+                            <constraint firstItem="3wV-3A-fzP" firstAttribute="top" secondItem="YcQ-ko-tuf" secondAttribute="bottom" constant="8" id="BMY-DX-Mg2"/>
                             <constraint firstItem="3wV-3A-fzP" firstAttribute="leading" secondItem="LN6-2y-5zV" secondAttribute="leading" id="Feb-Pe-uNt"/>
                             <constraint firstItem="LN6-2y-5zV" firstAttribute="bottom" secondItem="3wV-3A-fzP" secondAttribute="bottom" id="Ifl-xT-7aE"/>
                             <constraint firstItem="LN6-2y-5zV" firstAttribute="trailing" secondItem="3wV-3A-fzP" secondAttribute="trailing" id="LlQ-s8-D5a"/>
@@ -239,10 +243,11 @@
                             <constraint firstItem="geG-kP-mNg" firstAttribute="top" secondItem="LN6-2y-5zV" secondAttribute="top" constant="16" id="u8b-dT-7ew"/>
                             <constraint firstItem="LN6-2y-5zV" firstAttribute="bottom" secondItem="YQa-7e-mMB" secondAttribute="bottom" constant="20" id="vxA-dn-A14"/>
                             <constraint firstItem="geG-kP-mNg" firstAttribute="leading" secondItem="LN6-2y-5zV" secondAttribute="leading" constant="20" id="xRP-Nt-QbG"/>
+                            <constraint firstItem="LN6-2y-5zV" firstAttribute="trailing" secondItem="geG-kP-mNg" secondAttribute="trailing" constant="10" id="zzV-2I-5gn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="TBc-wb-rbO">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" customizationIdentifier="Save" id="TBc-wb-rbO">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="3wc-f8-lpu"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="3wV-3A-fzP" id="v9y-bi-Ym2"/>
@@ -251,6 +256,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btT-Hf-lqO" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2249.6183206106871" y="1781.6901408450706"/>
+        </scene>
+        <!--Add Reminder View Controller-->
+        <scene sceneID="A4O-dV-X6E">
+            <objects>
+                <viewController storyboardIdentifier="addReminder" id="5Xb-md-YnL" customClass="AddReminderViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h9r-hN-K4F">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="FLk-ZN-zST">
+                                <rect key="frame" x="0.0" y="142" width="393" height="606"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0TZ-Hl-AkJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="eFa-pA-1VP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accessibility: 0.50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZP-z2-L1r">
+                                        <rect key="frame" x="0.0" y="60" width="393" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YSb-o8-4FL">
+                                        <rect key="frame" x="-2" y="93" width="397" height="31"/>
+                                        <connections>
+                                            <action selector="accessibilityChanged:" destination="5Xb-md-YnL" eventType="valueChanged" id="HUd-W3-ZFm"/>
+                                        </connections>
+                                    </slider>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-6e-2Bv">
+                                        <rect key="frame" x="0.0" y="139.00000000000003" width="393" height="416.66666666666674"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="787695742.43749297">
+                                            <!--2025-12-17 20:22:22 +0000-->
+                                        </date>
+                                        <date key="minimumDate" timeIntervalSinceReferenceDate="787690800">
+                                            <!--2025-12-17 19:00:00 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5j-Tp-AEd">
+                                        <rect key="frame" x="0.0" y="571.66666666666663" width="393" height="34.333333333333371"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="eF7-HH-m2r"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                        <connections>
+                                            <action selector="didTapSave" destination="5Xb-md-YnL" eventType="touchUpInside" id="nN1-4d-PWp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="t5j-Tp-AEd" secondAttribute="trailing" constant="25" id="JFy-lR-yh9"/>
+                                    <constraint firstItem="t5j-Tp-AEd" firstAttribute="leading" secondItem="FLk-ZN-zST" secondAttribute="leading" constant="25" id="ZiA-wy-IeI"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xXF-7Z-Ntw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FLk-ZN-zST" firstAttribute="leading" secondItem="h9r-hN-K4F" secondAttribute="leading" id="2Ze-rw-awv"/>
+                            <constraint firstItem="FLk-ZN-zST" firstAttribute="top" secondItem="xXF-7Z-Ntw" secondAttribute="top" constant="24" id="Ohd-ih-p2p"/>
+                            <constraint firstAttribute="trailing" secondItem="FLk-ZN-zST" secondAttribute="trailing" id="Q6D-lV-yGj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="reminderAccessibilityLabel" destination="hZP-z2-L1r" id="bad-vx-MZX"/>
+                        <outlet property="reminderAccessibilitySlider" destination="YSb-o8-4FL" id="eft-DO-fN0"/>
+                        <outlet property="reminderDatePicker" destination="WzY-6e-2Bv" id="Ike-0l-ndy"/>
+                        <outlet property="reminderTitleField" destination="0TZ-Hl-AkJ" id="QxE-T3-b5T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3or-46-YBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2249.6183206106871" y="2512.6760563380285"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dtq-X0-shh">

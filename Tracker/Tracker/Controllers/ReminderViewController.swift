@@ -20,6 +20,8 @@ class ReminderViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+        
+        loadReminders()
     }
 
     @IBAction func didTapAdd() {
@@ -28,40 +30,64 @@ class ReminderViewController: UIViewController {
         }
 
         vc.completion = { title, accessibility, date in
-            let reminder = ReminderModel(
+            RemindersDatabase.shared.insertReminder(
                 title: title,
                 accessibility: accessibility,
                 dateOfRemind: date
             )
 
-            self.reminders.append(reminder)
-            self.scheduleNotification(reminder)
-
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.loadReminders()
                 self.navigationController?.popViewController(animated: true)
             }
         }
-
         navigationController?.pushViewController(vc, animated: true)
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadReminders()
+    }
+
+    private func loadReminders() {
+        reminders = RemindersDatabase.shared.fetchReminders()
+        reminders.forEach {
+            scheduleNotification($0)
+        }
+        
+        tableView.reloadData()
     }
 }
 
 extension ReminderViewController: UITableViewDataSource, UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let reminder = reminders[indexPath.row]
+            RemindersDatabase.shared.deleteReminder(id: reminder.id)
+
+            reminders.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         reminders.count
     }
 
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "ReminderTableViewCell",
+            withIdentifier: "ReminderCell",
             for: indexPath
         )
 
-        cell.textLabel?.text = reminders[indexPath.row].title
+        let reminder = reminders[indexPath.row]
+        cell.textLabel?.text = reminder.title
+        cell.detailTextLabel?.text =
+            "Accessibility: \(String(format: "%.2f", reminder.accessibility))"
+
         return cell
     }
 }
