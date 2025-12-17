@@ -41,6 +41,7 @@ class ReminderViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }
+        navigationController?.pushViewController(vc, animated: true)
 
     }
     
