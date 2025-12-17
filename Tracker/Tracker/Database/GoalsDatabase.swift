@@ -5,6 +5,7 @@
 //  Created by Zhalgas Bagytzhan on 17.12.2025.
 //
 
+import Foundation
 import SQLite
 
 final class GoalsDatabase {
