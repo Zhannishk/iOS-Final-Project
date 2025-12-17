@@ -15,14 +15,23 @@ class AddGoalViewController: UIViewController {
     @IBOutlet weak var goalStartDatePicker: UIDatePicker!
     @IBOutlet weak var goalDurationPicker: UIDatePicker!
 
-
+    var goalToEdit: GoalModel?
     var completion: ((String, Double, Date, TimeInterval) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "New Goal"
+        
+        if let goal = goalToEdit {
+            title = "Edit Goal"
+            goalTitleField.text = goal.title
+            goalAccessibilitySlider.value = Float(goal.accessibility)
+            goalStartDatePicker.date = goal.startDate
+            goalDurationPicker.countDownDuration = goal.duration
+        }
 
         configureUI()
+        
     }
 
     private func configureUI() {
@@ -49,6 +58,31 @@ class AddGoalViewController: UIViewController {
             showAlert()
             return
         }
+        
+        GoalsDatabase.shared.insertGoal(
+            title: title,
+            accessibility: Double(goalAccessibilitySlider.value),
+            startDate: goalStartDatePicker.date,
+            duration: goalDurationPicker.countDownDuration
+        )
+        
+        if let goal = goalToEdit {
+            let updatedGoal = Goal(
+                id: goal.id,
+                title: title,
+                accessibility: Double(goalAccessibilitySlider.value),
+                startDate: goalStartDatePicker.date,
+                duration: goalDurationPicker.countDownDuration
+            )
+            GoalsDatabase.shared.updateGoal(updatedGoal)
+        } else {
+            GoalsDatabase.shared.insertGoal(
+                title: title,
+                accessibility: Double(goalAccessibilitySlider.value),
+                startDate: goalStartDatePicker.date,
+                duration: goalDurationPicker.countDownDuration
+            )
+        }
 
         completion?(
             title,
@@ -73,6 +107,20 @@ class AddGoalViewController: UIViewController {
 
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
+    }
+    
+    func copyDatabaseIfNeeded(sourcePath: String) -> Bool {
+        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let destinationPath = documents + "/goals.db"
+        let exists = FileManager.default.fileExists(atPath: destinationPath)
+        guard !exists else { return false }
+        do {
+            try FileManager.default.copyItem(atPath: sourcePath, toPath: destinationPath)
+            return true
+        } catch {
+          print("error during file copy: \(error)")
+            return false
+        }
     }
 }
 

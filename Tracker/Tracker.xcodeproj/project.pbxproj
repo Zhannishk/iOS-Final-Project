@@ -210,6 +210,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				4E129EB32EF2531700010ACF /* XCRemoteSwiftPackageReference "Alamofire" */,
+				4E65079E2EF2FBCC00C9B98B /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CFAF5CB92EED75F9007EB933 /* Products */;
@@ -574,6 +575,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.10.2;
+			};
+		};
+		4E65079E2EF2FBCC00C9B98B /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
