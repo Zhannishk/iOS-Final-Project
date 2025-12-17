@@ -26,11 +26,16 @@ extension ReminderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        cell.textLabel?.text = "Event #\(indexPath.row + 1)"
-        cell.detailTextLabel?.text = "24 Dec 2025"
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "ReminderCell",
+            for: indexPath
+        ) as! ReminderTableViewCell
+
+        cell.titleLabel.text = "Event #\(indexPath.row + 1)"
+        cell.dateLabel.text = "24 Dec 2025"
         cell.selectionStyle = .none
         return cell
+
     }
 }
 
