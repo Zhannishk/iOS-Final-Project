@@ -54,7 +54,7 @@ class ReminderViewController: UIViewController {
         reminders.forEach {
             scheduleNotification($0)
         }
-
+        
         tableView.reloadData()
     }
 }
