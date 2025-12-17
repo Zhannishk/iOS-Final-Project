@@ -246,8 +246,8 @@
                             <constraint firstItem="LN6-2y-5zV" firstAttribute="trailing" secondItem="geG-kP-mNg" secondAttribute="trailing" constant="10" id="zzV-2I-5gn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="TBc-wb-rbO">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" customizationIdentifier="Save" id="TBc-wb-rbO">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="3wc-f8-lpu"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="3wV-3A-fzP" id="v9y-bi-Ym2"/>
@@ -266,7 +266,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="FLk-ZN-zST">
-                                <rect key="frame" x="0.0" y="142" width="393" height="556"/>
+                                <rect key="frame" x="0.0" y="142" width="393" height="606"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0TZ-Hl-AkJ">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
@@ -289,7 +289,7 @@
                                         </connections>
                                     </slider>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-6e-2Bv">
-                                        <rect key="frame" x="0.0" y="139" width="393" height="417"/>
+                                        <rect key="frame" x="0.0" y="139.00000000000003" width="393" height="416.66666666666674"/>
                                         <date key="date" timeIntervalSinceReferenceDate="787695742.43749297">
                                             <!--2025-12-17 20:22:22 +0000-->
                                         </date>
@@ -297,7 +297,22 @@
                                             <!--2025-12-17 19:00:00 +0000-->
                                         </date>
                                     </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5j-Tp-AEd">
+                                        <rect key="frame" x="0.0" y="571.66666666666663" width="393" height="34.333333333333371"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="eF7-HH-m2r"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                        <connections>
+                                            <action selector="didTapSave" destination="5Xb-md-YnL" eventType="touchUpInside" id="nN1-4d-PWp"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="t5j-Tp-AEd" secondAttribute="trailing" constant="25" id="JFy-lR-yh9"/>
+                                    <constraint firstItem="t5j-Tp-AEd" firstAttribute="leading" secondItem="FLk-ZN-zST" secondAttribute="leading" constant="25" id="ZiA-wy-IeI"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xXF-7Z-Ntw"/>
@@ -317,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3or-46-YBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2250" y="2513"/>
+            <point key="canvasLocation" x="2249.6183206106871" y="2512.6760563380285"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dtq-X0-shh">
