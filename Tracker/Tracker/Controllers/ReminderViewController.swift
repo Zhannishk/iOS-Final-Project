@@ -16,6 +16,22 @@ class ReminderViewController: UIViewController {
 //        tableView.delegate = self
     }
     
+    @IBAction func addTapped(_ sender: UIButton) {
+        openAddActivity(type: .reminder)
+    }
+
+    func openAddActivity(type: ActivityType) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navVC = storyboard.instantiateViewController(
+            withIdentifier: "AddActivityNavController"
+        ) as! UINavigationController
+
+        let addVC = navVC.topViewController as! AddActivityViewController
+        addVC.activityType = type
+
+        present(navVC, animated: true)
+    }
+
     
 }
 extension ReminderViewController: UITableViewDataSource {
