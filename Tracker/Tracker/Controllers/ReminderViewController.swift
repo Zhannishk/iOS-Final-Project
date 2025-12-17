@@ -6,52 +6,88 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ReminderViewController: UIViewController {
+
     @IBOutlet weak var tableView: UITableView!
+
+    private var reminders: [ReminderModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Reminders"
+
         tableView.dataSource = self
-//        tableView.delegate = self
-    }
-    
-    @IBAction func addTapped(_ sender: UIButton) {
-        openAddActivity(type: .reminder)
+        tableView.delegate = self
     }
 
-    func openAddActivity(type: ActivityType) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let navVC = storyboard.instantiateViewController(
-            withIdentifier: "AddActivityNavController"
-        ) as! UINavigationController
+    @IBAction func didTapAdd() {
+        guard let vc = storyboard?.instantiateViewController(identifier: "addReminder") as? AddReminderViewController else {
+            return
+        }
 
-        let addVC = navVC.topViewController as! AddActivityViewController
-        addVC.activityType = type
+        vc.completion = { title, accessibility, date in
+            let reminder = ReminderModel(
+                title: title,
+                accessibility: accessibility,
+                dateOfRemind: date
+            )
 
-        present(navVC, animated: true)
+            self.reminders.append(reminder)
+            self.scheduleNotification(reminder)
+
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+
+        navigationController?.pushViewController(vc, animated: true)
     }
-
-    
 }
-extension ReminderViewController: UITableViewDataSource {
+
+extension ReminderViewController: UITableViewDataSource, UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        reminders.count
     }
 
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "ReminderCell",
+            withIdentifier: "ReminderTableViewCell",
             for: indexPath
-        ) as! ReminderTableViewCell
+        )
 
-        cell.titleLabel.text = "Event #\(indexPath.row + 1)"
-        cell.dateLabel.text = "24 Dec 2025"
-        cell.selectionStyle = .none
+        cell.textLabel?.text = reminders[indexPath.row].title
         return cell
-
     }
 }
 
+extension ReminderViewController {
+
+    private func scheduleNotification(_ reminder: ReminderModel) {
+
+        let content = UNMutableNotificationContent()
+        content.title = reminder.title
+        content.sound = .default
+
+        let trigger = UNCalendarNotificationTrigger(
+            dateMatching: Calendar.current.dateComponents(
+                [.year, .month, .day, .hour, .minute],
+                from: reminder.dateOfRemind
+            ),
+            repeats: false
+        )
+
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: content,
+            trigger: trigger
+        )
+
+        UNUserNotificationCenter.current().add(request)
+    }
+}
