@@ -11,7 +11,8 @@ import UserNotifications
 class ReminderViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
+    
+    private var goals: [GoalModel] = []
     private var reminders: [ReminderModel] = []
 
     override func viewDidLoad() {
@@ -25,28 +26,27 @@ class ReminderViewController: UIViewController {
     }
 
     @IBAction func didTapAdd() {
-        guard let vc = storyboard?.instantiateViewController(identifier: "addReminder") as? AddReminderViewController else {
+        guard let vc = storyboard?.instantiateViewController(identifier: "manageReminder") as? ManageReminderViewController else {
             return
         }
 
         vc.completion = { title, accessibility, date in
-            RemindersDatabase.shared.insertReminder(
-                title: title,
-                accessibility: accessibility,
-                dateOfRemind: date
-            )
-
             DispatchQueue.main.async {
                 self.loadReminders()
-                self.navigationController?.popViewController(animated: true)
             }
         }
-
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadReminders()
+    }
+    
+    private func loadGoals() {
+        goals = GoalsDatabase.shared.fetchGoals()
+        tableView.reloadData()
     }
 
     private func loadReminders() {
@@ -75,20 +75,37 @@ extension ReminderViewController: UITableViewDataSource, UITableViewDelegate {
         reminders.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: "ReminderCell",
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: ReminderCell.identifier,
             for: indexPath
-        )
+        ) as? ReminderCell else {
+            return UITableViewCell()
+        }
 
         let reminder = reminders[indexPath.row]
-        cell.textLabel?.text = reminder.title
-        cell.detailTextLabel?.text =
-            "Accessibility: \(String(format: "%.2f", reminder.accessibility))"
+        cell.configure(with: reminder)
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+        guard let vc = storyboard?.instantiateViewController(identifier: "manageReminder") as? ManageReminderViewController else {
+            return
+        }
+        
+        vc.reminderToEdit = reminders[indexPath.row]
+        vc.completion = { _, _, _ in
+            self.loadReminders()
+        }
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension ReminderViewController {
@@ -108,11 +125,42 @@ extension ReminderViewController {
         )
 
         let request = UNNotificationRequest(
-            identifier: UUID().uuidString,
+            identifier: "reminder_\(reminder.id)",
             content: content,
             trigger: trigger
         )
 
         UNUserNotificationCenter.current().add(request)
+    }
+}
+
+extension ReminderViewController: ActivitySelectionDelegate {
+    func didSelectActivity(_ activity: ActivityModel, type: ActivityAddType) {
+        switch type {
+        case .goal:
+            let newGoal = GoalModel(
+                id: Int64(Date().timeIntervalSince1970),
+                title: activity.activityName,
+                accessibility: activity.accessibility,
+                startDate: Date(),
+                duration: 3600
+            )
+            GoalsDatabase.shared.insertGoal(
+                title: newGoal.title,
+                accessibility: newGoal.accessibility,
+                startDate: newGoal.startDate,
+                duration: newGoal.duration
+            )
+            
+        case .reminder:
+            let newReminder = ReminderModel(
+                id: Int64(Date().timeIntervalSince1970),
+                title: activity.activityName,
+                accessibility: activity.accessibility,
+                dateOfRemind: Date()
+            )
+            RemindersDatabase.shared.insertReminder(reminder: newReminder)
+            loadReminders()
+        }
     }
 }

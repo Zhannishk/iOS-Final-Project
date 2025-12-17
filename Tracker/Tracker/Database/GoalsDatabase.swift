@@ -65,6 +65,15 @@ final class GoalsDatabase {
         }
     }
     
+    func insertGoal(goal: GoalModel) {
+        insertGoal(
+            title: goal.title,
+            accessibility: goal.accessibility,
+            startDate: goal.startDate,
+            duration: goal.duration
+        )
+    }
+    
     func fetchGoals() -> [GoalModel] {
         var result: [GoalModel] = []
 

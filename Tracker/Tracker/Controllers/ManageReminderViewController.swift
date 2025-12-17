@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddReminderViewController: UIViewController {
+class ManageReminderViewController: UIViewController {
     
     @IBOutlet var reminderTitleField: UITextField!
     @IBOutlet weak var reminderAccessibilitySlider: UISlider!

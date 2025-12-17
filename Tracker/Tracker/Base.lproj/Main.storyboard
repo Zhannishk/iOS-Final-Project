@@ -144,7 +144,7 @@
                                 <rect key="frame" x="0.0" y="156" width="393" height="613"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReminderCell" rowHeight="100" id="lSv-s9-PV6" customClass="ReminderTableViewCell" customModule="Tracker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReminderCell" rowHeight="100" id="lSv-s9-PV6" customClass="ReminderCell" customModule="Tracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lSv-s9-PV6" id="S4t-xm-8f9">
@@ -226,7 +226,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
                                 <connections>
-                                    <action selector="didTapAdd" destination="bv2-Pm-7ON" eventType="touchUpInside" id="u3v-i7-GhV"/>
+                                    <action selector="didTapAdd" destination="bv2-Pm-7ON" eventType="touchUpInside" id="7Bz-G4-A2k"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -250,7 +250,7 @@
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="3wV-3A-fzP" id="v9y-bi-Ym2"/>
+                        <outlet property="tableView" destination="3wV-3A-fzP" id="MQl-mr-J6Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btT-Hf-lqO" sceneMemberID="firstResponder"/>

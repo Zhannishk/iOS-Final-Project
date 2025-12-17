@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddGoalViewController: UIViewController {
+class ManageGoalViewController: UIViewController {
 
     @IBOutlet weak var goalTitleField: UITextField!
     @IBOutlet weak var goalAccessibilitySlider: UISlider!
