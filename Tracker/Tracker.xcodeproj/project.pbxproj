@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CF52E9392EF318E8005DF7D4 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CF52E9382EF318E8005DF7D4 /* SQLite */; };
+		CF52E93B2EF318EE005DF7D4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CF52E93A2EF318EE005DF7D4 /* Alamofire */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CFAF5CCF2EED75FB007EB933 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF52E9392EF318E8005DF7D4 /* SQLite in Frameworks */,
+				CF52E93B2EF318EE005DF7D4 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,12 +92,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF52E9372EF318E8005DF7D4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CFAF5CAF2EED75F9007EB933 = {
 			isa = PBXGroup;
 			children = (
 				CFAF5CBA2EED75F9007EB933 /* Tracker */,
 				CFAF5CD12EED75FB007EB933 /* TrackerTests */,
 				CFAF5CDB2EED75FB007EB933 /* TrackerUITests */,
+				CF52E9372EF318E8005DF7D4 /* Frameworks */,
 				CFAF5CB92EED75F9007EB933 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,6 +140,8 @@
 			);
 			name = Tracker;
 			packageProductDependencies = (
+				CF52E9382EF318E8005DF7D4 /* SQLite */,
+				CF52E93A2EF318EE005DF7D4 /* Alamofire */,
 			);
 			productName = Tracker;
 			productReference = CFAF5CB82EED75F9007EB933 /* Tracker.app */;
@@ -210,6 +227,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				4E129EB32EF2531700010ACF /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CF52E9362EF31869005DF7D4 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CFAF5CB92EED75F9007EB933 /* Products */;
@@ -576,7 +594,28 @@
 				minimumVersion = 5.10.2;
 			};
 		};
+		CF52E9362EF31869005DF7D4 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF52E9382EF318E8005DF7D4 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF52E9362EF31869005DF7D4 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+		CF52E93A2EF318EE005DF7D4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E129EB32EF2531700010ACF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CFAF5CB02EED75F9007EB933 /* Project object */;
 }
