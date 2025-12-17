@@ -4,12 +4,12 @@
 //
 //  Created by Zhalgas Bagytzhan on 17.12.2025.
 //
-
+import Foundation
 import SQLite
 
 final class RemindersDatabase {
 
-    static let shared = GoalsDatabase()
+    static let shared = RemindersDatabase()
 
     private let db: Connection
 

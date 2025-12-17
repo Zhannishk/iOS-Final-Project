@@ -12,4 +12,5 @@ struct ReminderModel: Codable {
     let title: String
     let accessibility: Double
     let dateOfRemind: Date
+    let startDate: Date
 }

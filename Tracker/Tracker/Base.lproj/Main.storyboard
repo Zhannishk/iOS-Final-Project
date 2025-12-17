@@ -127,8 +127,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geG-kP-mNg">
-                                <rect key="frame" x="20" y="72" width="141" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geG-kP-mNg">
+                                <rect key="frame" x="20" y="72" width="363" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -140,8 +140,8 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3wV-3A-fzP">
-                                <rect key="frame" x="0.0" y="151" width="393" height="618"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3wV-3A-fzP">
+                                <rect key="frame" x="0.0" y="156" width="393" height="613"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReminderCell" rowHeight="100" id="lSv-s9-PV6" customClass="ReminderTableViewCell" customModule="Tracker" customModuleProvider="target">
@@ -232,6 +232,7 @@
                         <constraints>
                             <constraint firstItem="YcQ-ko-tuf" firstAttribute="top" secondItem="geG-kP-mNg" secondAttribute="bottom" constant="8" id="1gv-lJ-fjN"/>
                             <constraint firstItem="YcQ-ko-tuf" firstAttribute="leading" secondItem="LN6-2y-5zV" secondAttribute="leading" constant="8" id="ATJ-ni-cxb"/>
+                            <constraint firstItem="3wV-3A-fzP" firstAttribute="top" secondItem="YcQ-ko-tuf" secondAttribute="bottom" constant="8" id="BMY-DX-Mg2"/>
                             <constraint firstItem="3wV-3A-fzP" firstAttribute="leading" secondItem="LN6-2y-5zV" secondAttribute="leading" id="Feb-Pe-uNt"/>
                             <constraint firstItem="LN6-2y-5zV" firstAttribute="bottom" secondItem="3wV-3A-fzP" secondAttribute="bottom" id="Ifl-xT-7aE"/>
                             <constraint firstItem="LN6-2y-5zV" firstAttribute="trailing" secondItem="3wV-3A-fzP" secondAttribute="trailing" id="LlQ-s8-D5a"/>
@@ -239,6 +240,7 @@
                             <constraint firstItem="geG-kP-mNg" firstAttribute="top" secondItem="LN6-2y-5zV" secondAttribute="top" constant="16" id="u8b-dT-7ew"/>
                             <constraint firstItem="LN6-2y-5zV" firstAttribute="bottom" secondItem="YQa-7e-mMB" secondAttribute="bottom" constant="20" id="vxA-dn-A14"/>
                             <constraint firstItem="geG-kP-mNg" firstAttribute="leading" secondItem="LN6-2y-5zV" secondAttribute="leading" constant="20" id="xRP-Nt-QbG"/>
+                            <constraint firstItem="LN6-2y-5zV" firstAttribute="trailing" secondItem="geG-kP-mNg" secondAttribute="trailing" constant="10" id="zzV-2I-5gn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TBc-wb-rbO">

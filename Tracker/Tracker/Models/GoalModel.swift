@@ -11,6 +11,7 @@ struct GoalModel: Codable {
     let id: Int64
     let title: String
     let accessibility: Double
+    let startDate: Date
     let date: Date
     let duration: TimeInterval
 }
