@@ -225,6 +225,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapAdd" destination="bv2-Pm-7ON" eventType="touchUpInside" id="u3v-i7-GhV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LN6-2y-5zV"/>
