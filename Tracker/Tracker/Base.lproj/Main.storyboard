@@ -54,6 +54,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Start">
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                    <color key="baseBackgroundColor" red="0.60784316059999999" green="0.58823531870000001" blue="0.58823531870000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="voK-iT-GZv" kind="presentation" identifier="showMainTabBar" id="cnW-ff-LC0"/>
@@ -258,6 +259,7 @@
             <point key="canvasLocation" x="3151.9083969465646" y="1064.7887323943662"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.60784316059999999" green="0.58823531870000001" blue="0.58823531870000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
         <image name="bell" catalog="system" width="125" height="128"/>
         <image name="checkmark.circle" catalog="system" width="128" height="123"/>
