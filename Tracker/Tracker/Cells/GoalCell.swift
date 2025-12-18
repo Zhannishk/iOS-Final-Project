@@ -9,24 +9,20 @@ import UIKit
 
 class GoalCell: UITableViewCell {
 
-    @IBOutlet weak var goalTitleField: UITextField!
-    @IBOutlet weak var goalAccessibilitySlider: UISlider!
-    @IBOutlet weak var goalAccessibilityLabel: UILabel!
-    @IBOutlet weak var goalStartDatePicker: UIDatePicker!
-    @IBOutlet weak var goalDurationPicker: UIDatePicker!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
 
     static let identifier = "GoalCell"
 
     func configure(with goal: GoalModel) {
+        titleLabel.text = goal.title
 
-        goalTitleField.text = goal.title
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        startDateLabel.text = "Start: \(formatter.string(from: goal.startDate))"
 
-        goalAccessibilitySlider.value = Float(goal.accessibility)
-        goalAccessibilityLabel.text = String(format: "%.2f", goal.accessibility)
-
-        goalStartDatePicker.date = goal.startDate
-
-        goalDurationPicker.datePickerMode = .countDownTimer
-        goalDurationPicker.countDownDuration = goal.duration
+        let hours = Int(goal.duration / 3600)
+        durationLabel.text = "Duration: \(hours) hour(s)"
     }
 }

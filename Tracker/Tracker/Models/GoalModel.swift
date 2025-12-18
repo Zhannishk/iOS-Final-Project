@@ -10,7 +10,6 @@ import Foundation
 struct GoalModel: Codable {
     let id: Int64
     let title: String
-    let accessibility: Double
     let startDate: Date
     let duration: TimeInterval
 }

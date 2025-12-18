@@ -141,13 +141,11 @@ extension ReminderViewController: ActivitySelectionDelegate {
             let newGoal = GoalModel(
                 id: Int64(Date().timeIntervalSince1970),
                 title: activity.activityName,
-                accessibility: activity.accessibility,
                 startDate: Date(),
                 duration: 3600
             )
             GoalsDatabase.shared.insertGoal(
                 title: newGoal.title,
-                accessibility: newGoal.accessibility,
                 startDate: newGoal.startDate,
                 duration: newGoal.duration
             )
