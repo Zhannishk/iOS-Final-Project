@@ -13,7 +13,7 @@ protocol ActivityCellDelegate: AnyObject {
 class ActivityCell: UITableViewCell {
 
     @IBOutlet weak var activityNameField: UILabel!
-    @IBOutlet weak var activityTypeField: UITextField!
+//    @IBOutlet weak var activityTypeField: UITextField!
     @IBOutlet weak var addButton: UIButton!
     
     private var activity: ActivityModel?
@@ -24,7 +24,7 @@ class ActivityCell: UITableViewCell {
     func configure(with activity: ActivityModel) {
 
         activityNameField.text = activity.activity
-        activityTypeField.text = activity.type
+//        activityTypeField.text = activity.type
     }
     
     @IBAction func didTapAdd(_ sender: UIButton) {
