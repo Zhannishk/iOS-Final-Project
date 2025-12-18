@@ -198,7 +198,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="U7E-LO-mMw">
                                 <rect key="frame" x="0.0" y="105.66666666666669" width="393" height="663.33333333333326"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.95294117649999999" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GoalCell" id="XTC-TP-U3t" customClass="GoalCell" customModule="Tracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="100"/>
@@ -347,7 +347,7 @@
         <!--Reminder View Controller-->
         <scene sceneID="5Co-XN-YJ0">
             <objects>
-                <viewController storyboardIdentifier="manageReminder" id="bv2-Pm-7ON" customClass="ReminderViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bv2-Pm-7ON" customClass="ReminderViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9c2-yM-uwP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -480,7 +480,7 @@
         <!--Manage Reminder View Controller-->
         <scene sceneID="A4O-dV-X6E">
             <objects>
-                <viewController id="5Xb-md-YnL" customClass="ManageReminderViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="manageReminder" id="5Xb-md-YnL" customClass="ManageReminderViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h9r-hN-K4F">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
