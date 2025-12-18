@@ -28,7 +28,7 @@ class GoalViewController: UIViewController {
             return
         }
 
-        vc.completion = { _, _, _, _ in
+        vc.completion = { _, _, _ in
             self.loadGoals()
         }
 
@@ -88,7 +88,7 @@ extension GoalViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         vc.goalToEdit = goals[indexPath.row]
-        vc.completion = { _, _, _, _ in
+        vc.completion = { _, _, _ in
             self.loadGoals()
         }
         

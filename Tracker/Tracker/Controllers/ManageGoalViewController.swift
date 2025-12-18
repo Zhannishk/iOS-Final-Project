@@ -15,7 +15,7 @@ class ManageGoalViewController: UIViewController {
     @IBOutlet weak var goalDurationPicker: UIDatePicker!
 
     var goalToEdit: GoalModel?
-    var completion: ((String, Double, Date, TimeInterval) -> Void)?
+    var completion: ((String, Date, TimeInterval) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -140,7 +140,7 @@ extension ReminderViewController: ActivitySelectionDelegate {
         case .goal:
             let newGoal = GoalModel(
                 id: Int64(Date().timeIntervalSince1970),
-                title: activity.activityName,
+                title: activity.activity,
                 startDate: Date(),
                 duration: 3600
             )
@@ -153,8 +153,8 @@ extension ReminderViewController: ActivitySelectionDelegate {
         case .reminder:
             let newReminder = ReminderModel(
                 id: Int64(Date().timeIntervalSince1970),
-                title: activity.activityName,
-                accessibility: activity.accessibility,
+                title: activity.activity,
+                accessibility: activity.accessibilityValue,
                 dateOfRemind: Date()
             )
             RemindersDatabase.shared.insertReminder(reminder: newReminder)
