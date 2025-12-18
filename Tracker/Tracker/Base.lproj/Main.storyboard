@@ -122,7 +122,7 @@
         <!--Reminder View Controller-->
         <scene sceneID="5Co-XN-YJ0">
             <objects>
-                <viewController id="bv2-Pm-7ON" customClass="ReminderViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="manageReminder" id="bv2-Pm-7ON" customClass="ReminderViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9c2-yM-uwP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -255,7 +255,7 @@
         <!--Manage Reminder View Controller-->
         <scene sceneID="A4O-dV-X6E">
             <objects>
-                <viewController storyboardIdentifier="addReminder" id="5Xb-md-YnL" customClass="ManageReminderViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="manageReminder" id="5Xb-md-YnL" customClass="ManageReminderViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h9r-hN-K4F">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
