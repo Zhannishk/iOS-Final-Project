@@ -47,7 +47,6 @@ final class GoalsDatabase {
 
     func insertGoal(
         title: String,
-        accessibility: Double,
         startDate: Date,
         duration: TimeInterval
     ) {
@@ -68,7 +67,6 @@ final class GoalsDatabase {
     func insertGoal(goal: GoalModel) {
         insertGoal(
             title: goal.title,
-            accessibility: goal.accessibility,
             startDate: goal.startDate,
             duration: goal.duration
         )
@@ -82,7 +80,6 @@ final class GoalsDatabase {
                 let model = GoalModel(
                     id: goal[id],
                     title: goal[title],
-                    accessibility: goal[accessibility],
                     startDate: Date(timeIntervalSince1970: goal[startDate]),
                     duration: goal[duration]
                 )
@@ -101,7 +98,6 @@ final class GoalsDatabase {
         do {
             try db.run(item.update(
                 title <- goal.title,
-                accessibility <- goal.accessibility,
                 startDate <- goal.startDate.timeIntervalSince1970,
                 duration <- goal.duration
             ))

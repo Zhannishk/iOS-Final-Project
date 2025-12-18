@@ -10,8 +10,7 @@ import UIKit
 class ManageGoalViewController: UIViewController {
 
     @IBOutlet weak var goalTitleField: UITextField!
-    @IBOutlet weak var goalAccessibilitySlider: UISlider!
-    @IBOutlet weak var goalAccessibilityLabel: UILabel!
+
     @IBOutlet weak var goalStartDatePicker: UIDatePicker!
     @IBOutlet weak var goalDurationPicker: UIDatePicker!
 
@@ -25,7 +24,6 @@ class ManageGoalViewController: UIViewController {
         if let goal = goalToEdit {
             title = "Edit Goal"
             goalTitleField.text = goal.title
-            goalAccessibilitySlider.value = Float(goal.accessibility)
             goalStartDatePicker.date = goal.startDate
             goalDurationPicker.countDownDuration = goal.duration
         }
@@ -35,20 +33,10 @@ class ManageGoalViewController: UIViewController {
     }
 
     private func configureUI() {
-        goalAccessibilitySlider.minimumValue = 0
-        goalAccessibilitySlider.maximumValue = 1
-        goalAccessibilitySlider.value = 0.5
-
-        goalAccessibilityLabel.text = String(format: "%.2f", goalAccessibilitySlider.value)
-
         goalDurationPicker.datePickerMode = .countDownTimer
         goalDurationPicker.countDownDuration = 3600
 
         goalDurationPicker.minimumDate = Date()
-    }
-
-    @IBAction func accessibilityChanged(_ sender: UISlider) {
-        goalAccessibilityLabel.text = String(format: "%.2f", sender.value)
     }
 
     @IBAction func didTapSave() {
@@ -61,7 +49,6 @@ class ManageGoalViewController: UIViewController {
         
         GoalsDatabase.shared.insertGoal(
             title: title,
-            accessibility: Double(goalAccessibilitySlider.value),
             startDate: goalStartDatePicker.date,
             duration: goalDurationPicker.countDownDuration
         )
@@ -70,7 +57,6 @@ class ManageGoalViewController: UIViewController {
             let updatedGoal = GoalModel(
                 id: goal.id,
                 title: title,
-                accessibility: Double(goalAccessibilitySlider.value),
                 startDate: goalStartDatePicker.date,
                 duration: goalDurationPicker.countDownDuration
             )
@@ -78,7 +64,6 @@ class ManageGoalViewController: UIViewController {
         } else {
             GoalsDatabase.shared.insertGoal(
                 title: title,
-                accessibility: Double(goalAccessibilitySlider.value),
                 startDate: goalStartDatePicker.date,
                 duration: goalDurationPicker.countDownDuration
             )
@@ -86,7 +71,7 @@ class ManageGoalViewController: UIViewController {
 
         completion?(
             title,
-            Double(goalAccessibilitySlider.value),
+//            Double(goalAccessibilitySlider.value),
             goalStartDatePicker.date,
             goalDurationPicker.countDownDuration
         )
